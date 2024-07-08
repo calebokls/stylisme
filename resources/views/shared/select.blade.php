@@ -5,9 +5,9 @@
   $value ??= '';
 @endphp
 <div @class(['form-group',$class])>
-   <label for="{{$name}}">{{$label}}</label>
+   <label for="{{$name}}" style="color:blue;">{{$label}}</label>
    <select name="{{$name}}[]" id="{{$name}}" multiple>
-    @foreach ($options as $k => $v)
+    @foreach ($primaries as $k => $v)
         <option @selected($value->contains($k)) value="{{$k}}">{{$v}}</option>
     @endforeach
    </select>

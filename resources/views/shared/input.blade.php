@@ -6,7 +6,7 @@
     $value ??='';
 @endphp
 <div @class(['form-group',$class])>
-   <label for="name">{{$label}}</label>
+   <label style="color:blue;" for="{{$name}}">{{$label}}</label>
    @if($type == 'textarea')
      <textarea type="{{$type}}" class="form-control @error($name) is-invalid @enderror" name="{{$name}}">{{old($name,$value)}}</textarea>
       @else

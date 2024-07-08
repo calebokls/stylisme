@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>@yield('title')|administration</title>
 
     <meta name="description" content="" />
 
@@ -45,6 +45,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('assets/js/config.js')}}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
   </head>
 
   <body>
@@ -105,7 +107,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bold ms-2">STYLISME</span>
+              <span class="app-brand-text demo menu-text fw-bold ms-2">Administration</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -120,48 +122,40 @@
             <li class="menu-item active open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Dashboards">Styliste</div>
-                <div class="badge bg-danger rounded-pill ms-auto">5</div>
+                <div data-i18n="Dashboards">SuperAdmin</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/dashboards-crm.html"
-                    target="_blank"
+                    href="{{route('admin.taille.create')}}"
                     class="menu-link">
-                    <div data-i18n="CRM">Créér une marque</div>
+                    <div data-i18n="CRM">Créér une Taile</div>
                     <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
                   </a>
                 </li>
                 <li class="menu-item active">
-                  <a href="index.html" class="menu-link">
-                    <div data-i18n="Analytics">Analytics</div>
+                  <a href="{{route('admin.taille.index')}}" class="menu-link">
+                    <div data-i18n="Analytics">Liste des tailles</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div data-i18n="eCommerce">eCommerce</div>
+                    href="{{route('validation.validationy.index')}}" class="menu-link">
+                    <div data-i18n="eCommerce">Liste des acteurs</div>
+                    <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{route('signalement.index')}}" class="menu-link">
+                    <div data-i18n="Logistics">Acteurs Signaler(Modèle)</div>
                     <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-logistics-dashboard.html"
-                    target="_blank"
+                    href="{{route('index.collections.user')}}"
                     class="menu-link">
-                    <div data-i18n="Logistics">Logistics</div>
-                    <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-academy-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div data-i18n="Academy">Academy</div>
+                    <div data-i18n="Academy">Acteurs Signaler(Collections)</div>
                     <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
                   </a>
                 </li>
@@ -172,28 +166,38 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Vetements</div>
+                <div data-i18n="Layouts">Catégories</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
+                  <a href="{{route('admin.category.index')}}" class="menu-link">
+                    <div data-i18n="Without menu">Liste des Catégories</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
-                    <div data-i18n="Without navbar">Without navbar</div>
+                  <a href="{{route('admin.category.create')}}" class="menu-link">
+                    <div data-i18n="Without navbar">Ajouter une catégorie</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
-                    <div data-i18n="Container">Container</div>
+                  <a href="{{route('admin.primary.index')}}" class="menu-link">
+                    <div data-i18n="Container">Liste des sous catégories</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
+                  <a href="{{route('admin.primary.create')}}" class="menu-link">
+                    <div data-i18n="Fluid">Ajouter une sous catégorie</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{route('admin.property.create')}}" class="menu-link">
+                    <div data-i18n="Fluid">Ajouter un type de produit</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{{route('admin.property.index')}}" class="menu-link">
+                    <div data-i18n="Fluid">Liste des types de produit</div>
                   </a>
                 </li>
                 <li class="menu-item">
@@ -625,19 +629,6 @@
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
-
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -709,45 +700,12 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="col-12">
                   <div class="row">
+                      @include('shared.flash')
                       @yield('content')
                    </div>
                 </div>
             </div>
             <!-- / Content -->
-
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">ThemeSelection</a>
-                </div>
-                <div class="d-none d-lg-inline-block">
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link"
-                    >Support</a
-                  >
-                </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
@@ -791,5 +749,8 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <script>
+       new TomSelect('select[multiple]',{plugins:{remove_button:{title:'Supprimer'}}})
+    </script>
   </body>
 </html>

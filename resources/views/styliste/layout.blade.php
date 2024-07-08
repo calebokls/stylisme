@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html
   lang="en"
   class="light-style layout-menu-fixed layout-compact"
@@ -13,7 +12,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>@yield('title')|Stylisme</title>
 
     <meta name="description" content="" />
 
@@ -42,9 +41,12 @@
 
     <!-- Helpers -->
     <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('assets/js/config.js')}}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
   </head>
 
   <body>
@@ -55,7 +57,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="{{route('index')}}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -126,45 +128,18 @@
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/dashboards-crm.html"
-                    target="_blank"
+                    href="{{route('style.modely.index')}}"
                     class="menu-link">
-                    <div data-i18n="CRM">Créér une marque</div>
+                    <div data-i18n="CRM">Vos model</div>
                     <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
                   </a>
                 </li>
                 <li class="menu-item active">
-                  <a href="index.html" class="menu-link">
-                    <div data-i18n="Analytics">Analytics</div>
+                  <a href="{{route('style.modely.create')}}" class="menu-link">
+                    <div data-i18n="Analytics">Nouveau Model</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div data-i18n="eCommerce">eCommerce</div>
-                    <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-logistics-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div data-i18n="Logistics">Logistics</div>
-                    <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-academy-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div data-i18n="Academy">Academy</div>
-                    <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
-                  </a>
-                </li>
+
               </ul>
             </li>
 
@@ -172,33 +147,18 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Vetements</div>
+                <div data-i18n="Layouts">Collection</div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
+                  <a href="{{route('style.collectiony.index')}}" class="menu-link">
+                    <div data-i18n="Without menu">List de vos collection</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
-                    <div data-i18n="Without navbar">Without navbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
-                    <div data-i18n="Container">Container</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div data-i18n="Blank">Blank</div>
+                  <a href="{{route('style.collectiony.create')}}" class="menu-link">
+                    <div data-i18n="Without navbar">Créé une collection</div>
                   </a>
                 </li>
               </ul>
@@ -208,48 +168,22 @@
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-store"></i>
-                <div data-i18n="Front Pages">Front Pages</div>
+                <div data-i18n="Front Pages">Marques</div>
                 <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/landing-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Landing">Landing</div>
+                    href="{{route('style.marque.index')}}"
+                    class="menu-link">
+                    <div data-i18n="Landing">Vos marques</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/pricing-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Pricing">Pricing</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/payment-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Payment">Payment</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/checkout-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Checkout">Checkout</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/help-center-landing.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div data-i18n="Help Center">Help Center</div>
+                    href="{{route('style.marque.create')}}"
+                    class="menu-link">
+                    <div data-i18n="Pricing">Nouvelle marque</div>
                   </a>
                 </li>
               </ul>
@@ -261,17 +195,16 @@
             <!-- Apps -->
             <li class="menu-item">
               <a
-                href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-email.html"
-                target="_blank"
+                href="{{route('profile.edit')}}"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-envelope"></i>
-                <div data-i18n="Email">Email</div>
+                <div>Profile</div>
                 <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div>
               </a>
             </li>
             <li class="menu-item">
               <a
-                href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-chat.html"
+                href="{{route(config('chatify.routes.prefix'))}}"
                 target="_blank"
                 class="menu-link">
                 <i class="menu-icon tf-icons bx bx-chat"></i>
@@ -614,12 +547,16 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none ps-1 ps-sm-2"
-                    placeholder="Search..."
-                    aria-label="Search..." />
+                <form>
+                     <i class="bx bx-search fs-4 lh-0"></i>
+                      <input
+                      type="text"
+                      class="form-control border-0 shadow-none ps-1 ps-sm-2"
+                      name="search"
+                      id="search"
+                      placeholder="Recherche..."
+                      aria-label="Search..." />
+                </form>
                 </div>
               </div>
               <!-- /Search -->
@@ -640,23 +577,25 @@
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="{{asset('assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
+                 @if(Auth::user())
+                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                        <div class="avatar avatar-online">
+                          <img style="width:40px;height:40px;border-radius:50%;" src="{{Auth::user()->getUrlForLogo()}}" alt/>
+                       </div>
                   </a>
+
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="{{asset('assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                              <img style="width:40px;height:40px;border-radius:50%;" src="{{Auth::user()->getUrlForLogo()}}" alt/>
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-medium d-block">{{Auth::user()->name}} {{Auth::user()->firstname}}</span>
+                            <small class="text-muted">Styliste</small>
                           </div>
                         </div>
                       </a>
@@ -665,9 +604,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{route('profile.edit')}}">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Mon Profile</span>
                       </a>
                     </li>
                     <li>
@@ -690,11 +629,18 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+
+                        <form action="{{route('logout')}}" method="POST">
+                                @csrf
+                                <div class="d-flex">
+                                    <span class="align-middle"></span>
+                                    <p class="btn btn-light"> <i class="bx bx-power-off"></i>Deconnexion</p>
+                                </div>
+                             </form>
                       </a>
                     </li>
                   </ul>
+                 @endif
                 </li>
                 <!--/ User -->
               </ul>
@@ -709,6 +655,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="col-12">
                   <div class="row">
+                     @include('shared.flash')
                       @yield('content')
                    </div>
                 </div>
@@ -791,5 +738,8 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <script>
+       new TomSelect('select[multiple]',{plugins:{remove_button:{title:'Supprimer'}}})
+    </script>
   </body>
 </html>

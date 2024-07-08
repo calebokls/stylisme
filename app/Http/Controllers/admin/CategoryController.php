@@ -5,7 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Primary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,20 +16,32 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.category.index',[
-            'categories'=>$categories
-        ]);
+        if(Auth::user() && Auth::user()->acteur === "admin")
+        {
+             return view('admin.category.index',[
+                   'categories'=>Category::orderBy('created_at', 'DESC')->paginate(8)
+                ]);
+        }else{
+            return back()->with('danger','Impossible d\'effectuer cette acton');
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Category $category)
+    public function create()
     {
-        return view('admin.category.form',[
-            'category'=>$category
-        ]);
+        if(Auth::user() && Auth::user()->acteur === "admin")
+        {
+            $category = new Category();
+            $primaries = Primary::pluck('nom','id');
+            return view('admin.category.form',[
+                        'category'=>$category,
+                        'primaries'=>$primaries
+               ]);
+        }else{
+            return back()->with('danger','Impossible d\'effectuer cette acton');
+        }
     }
 
     /**
@@ -35,8 +49,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $category = new Category();
-        $category->create($request->validated());
+        $category = Category::create($request->validated());
+        $category->primaries()->sync($request->validated('primaries'));
         return to_route('admin.category.index')->with('success','Categorie créé avec succès');
     }
 
@@ -45,9 +59,16 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.form',[
-            'category'=>$category
-        ]);
+        if(Auth::user() && Auth::user()->acteur === "admin")
+        {
+            $primaries = Primary::pluck('nom','id');
+            return view('admin.category.form',[
+                'category'=>$category,
+                'primaries'=>$primaries
+            ]);
+        }else{
+            return back()->with('danger','Impossible d\'effectuer cette acton');
+        }
     }
 
     /**
@@ -56,6 +77,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
+        $category->primaries()->sync($request->validated('primaries'));
         return to_route('admin.category.index')->with('success','Categorie modifié avec succès');
     }
 
@@ -64,7 +86,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-      $category->delete();
-      return to_route('admin.category.index')->with('success','Categorie supprimée avec succès');
+        if(Auth::user() && Auth::user()->acteur === "admin")
+        {
+            $category->delete();
+            return to_route('admin.category.index')->with('success','Categorie supprimée avec succès');
+        }else{
+            return back()->with('danger','Impossible d\'effectuer cette acton');
+        }
     }
 }

@@ -28,7 +28,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        if(Auth::user()->acteur === "styliste")
+        {
+            return redirect()->intended(route('style.modely.index'));
+        }
+        if(Auth::user()->acteur === "admin")
+        {
+            return redirect()->intended(route('admin.category.index'));
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

@@ -31,21 +31,30 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string','min:3','max:255'],
+            'firstname' => ['required', 'string','min:3', 'max:255'],
+            'acteur' => ['string', 'max:255','nullable'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'max:10'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
         $user = User::create([
             'name' => $request->name,
+            'firstname' => $request->firstname,
+            'acteur' => $request->acteur ? 'styliste':'user',
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'entreprise'=>'null',
+            'logo'=>'null',
         ]);
-
         event(new Registered($user));
 
         Auth::login($user);
-
+        if($user->acteur === "styliste")
+        {
+            return redirect()->route('style.modely.index');
+        }
         return redirect(RouteServiceProvider::HOME);
     }
 }

@@ -4,8 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +25,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'firstname',
+        'acteur',
+        'phone',
+        'address',
+        'country',
+        'entreprise',
+        'logo'
     ];
 
     /**
@@ -42,4 +53,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function subscription()
+    {
+        return $this->hasOne(Abonement::class);
+    }
+    public function marques():HasMany
+    {
+        return $this->hasMany(Marques::class);
+    }
+
+
+
+    public function getUrlForLogo()
+    {
+        return Storage::disk('public')->url($this->logo);
+    }
 }

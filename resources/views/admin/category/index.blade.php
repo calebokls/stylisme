@@ -33,9 +33,6 @@
                                  @method('delete')
                                  <button class="dropdown-item"><i class="bx bx-trash me-1"></i>Supprimer</button>
                               </form>
-                              {{-- <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-1"></i> Delete</a
-                              > --}}
                             </div>
                           </div>
                         </td>
@@ -43,7 +40,7 @@
               @endforeach
                     </tbody>
                   </table>
+                  {{$categories->links()}}
                 </div>
               </div>
-
 @endsection
